@@ -20,33 +20,28 @@ public class Loan {
     private LocalDate maturity;
     private LocalDate expiry;
 
-    /**
-     * Revolver
-     */
-    public Loan(double commitment, int riskRating, LocalDate expiry, double outstanding) {
-        this(commitment, riskRating, null, expiry, outstanding, null);
-    }
-
-    /**
-     * Revolver (different order for error - there is a constructor with the same types order)
-     */
-    public Loan(double commitment, int riskRating, LocalDate expiry, CapitalStrategy capitalStrategy, double outstanding) {
-        this(commitment, riskRating, null, expiry, outstanding, capitalStrategy);
-    }
-
-    /**
-     * Revolving credit term loan
-     */
-    public Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding) {
-        this(commitment, riskRating, maturity, expiry, outstanding, null);
-    }
-
     public static Loan createTermLoan(double commitment, int riskRating, LocalDate maturity) {
         return new Loan(commitment, riskRating, maturity, null, 0.00, null);
     }
 
     public static Loan createTermLoan(double commitment, int riskRating, LocalDate maturity, double outstanding, CapitalStrategy capitalStrategy) {
         return new Loan(commitment, riskRating, maturity, null, outstanding, capitalStrategy);
+    }
+
+    public static Loan createRevolver(double commitment, int riskRating, LocalDate expiry, double outstanding) {
+        return new Loan(commitment, riskRating, null, expiry, outstanding, null);
+    }
+
+    public static Loan createRevolver(double commitment, int riskRating, LocalDate expiry, CapitalStrategy capitalStrategy, double outstanding) {
+        return new Loan(commitment, riskRating, null, expiry, outstanding, capitalStrategy);
+    }
+
+    public static Loan createRevolvingCreditTermLoan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding) {
+        return new Loan(commitment, riskRating, maturity, expiry, outstanding, null);
+    }
+
+    public static Loan createRevolvingCreditTermLoan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy) {
+        return new Loan(commitment, riskRating, maturity, expiry, outstanding, capitalStrategy);
     }
 
     /**
