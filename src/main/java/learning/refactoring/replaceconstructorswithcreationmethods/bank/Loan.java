@@ -44,10 +44,7 @@ public class Loan {
         return new Loan(commitment, riskRating, maturity, expiry, outstanding, capitalStrategy);
     }
 
-    /**
-     * Revolving credit term loan (all parameters)
-     */
-    public Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy) {
+    private Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy) {
         this.commitment = commitment;
         this.outstanding = outstanding;
         this.riskRating = riskRating;
