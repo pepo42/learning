@@ -1,7 +1,7 @@
 package learning.refactoring.movecreationknowledgetofactory.htmlparser.parser;
 
+import learning.refactoring.movecreationknowledgetofactory.htmlparser.factory.NodeFactory;
 import learning.refactoring.movecreationknowledgetofactory.htmlparser.nodes.Node;
-import learning.refactoring.movecreationknowledgetofactory.htmlparser.nodes.StringNode;
 
 public class StringParser {
     private Parser parser;
@@ -12,6 +12,8 @@ public class StringParser {
 
     public Node find(StringBuffer textBuffer, int textBegin, int textEnd) {
         // some logic here
-        return StringNode.createStringNode(textBuffer, textBegin, textEnd, parser.shouldDecodeNodes());
+
+        NodeFactory nodeFactory = new NodeFactory();
+        return nodeFactory.createStringNode(textBuffer, textBegin, textEnd, parser.shouldDecodeNodes());
     }
 }
