@@ -19,7 +19,7 @@ class CapitalCalculationTest {
     @Test
     void shouldCalculateTermLoanNoPayments2() {
         // creation of termLoan
-        Loan termLoan = new Loan(1.0d, 2, LocalDate.now(), 1.0d, new CapitalStrategyTermLoan());
+        Loan termLoan = Loan.createTermLoan(1.0d, 2, LocalDate.now(), 1.0d, new CapitalStrategyTermLoan());
 
         // when, then
         // call and verification of the results
