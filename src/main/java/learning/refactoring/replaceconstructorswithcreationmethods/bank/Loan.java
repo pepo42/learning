@@ -55,6 +55,10 @@ public class Loan {
         this(commitment, riskRating, maturity, expiry, outstanding, null);
     }
 
+    public static Loan createTermLoan(double commitment, int riskRating, LocalDate maturity) {
+        return new Loan(commitment, riskRating, maturity);
+    }
+
     /**
      * Revolving credit term loan (all parameters)
      */

@@ -7,14 +7,10 @@ import java.time.LocalDate;
 
 class CapitalCalculationTest {
 
-    private static Loan createTermLoan(double commitment, int riskRating, LocalDate maturity) {
-        return new Loan(commitment, riskRating, maturity);
-    }
-
     @Test
     void shouldCalculateTermLoanNoPayments1() {
         // creation of termLoan
-        Loan termLoan = createTermLoan(1.0d, 2, LocalDate.now());
+        Loan termLoan = Loan.createTermLoan(1.0d, 2, LocalDate.now());
 
         // when, then
         // call and verification of the results
