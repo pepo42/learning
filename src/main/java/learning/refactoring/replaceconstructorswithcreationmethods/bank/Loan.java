@@ -23,13 +23,6 @@ public class Loan {
     /**
      * Term loan
      */
-    public Loan(double commitment, int riskRating, LocalDate maturity) {
-        this(commitment, riskRating, maturity, 0.00, null);
-    }
-
-    /**
-     * Term loan
-     */
     public Loan(double commitment, int riskRating, LocalDate maturity, double outstanding, CapitalStrategy capitalStrategy) {
         this(commitment, riskRating, maturity, null, outstanding, capitalStrategy);
     }
@@ -56,7 +49,7 @@ public class Loan {
     }
 
     public static Loan createTermLoan(double commitment, int riskRating, LocalDate maturity) {
-        return new Loan(commitment, riskRating, maturity);
+        return new Loan(commitment, riskRating, maturity, 0.00, null);
     }
 
     /**
