@@ -1,0 +1,46 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class Loan(before) {
+    -CapitalStrategy capitalStrategy
+    -double commitment
+    -double outstanding
+    -int riskRating
+    -LocalDate maturity
+    -LocalDate expiry
+
+    +Loan(double commitment, int riskRating, LocalDate maturity)
+    +Loan(double commitment, int riskRating, LocalDate maturity, double outstanding, CapitalStrategy capitalStrategy)
+    +Loan(double commitment, int riskRating, LocalDate expiry, double outstanding)
+    +Loan(double commitment, int riskRating, LocalDate expiry, CapitalStrategy capitalStrategy, double outstanding)
+    +Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding)
+    +Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy)
+}
+
+class Loan(after) {
+    -CapitalStrategy capitalStrategy
+    -double commitment
+    -double outstanding
+    -int riskRating
+    -LocalDate maturity
+    -LocalDate expiry
+
+    +{static} createTermLoan(double commitment, int riskRating, LocalDate maturity): Loan
+    +{static} createTermLoan(double commitment, int riskRating, LocalDate maturity, double outstanding, CapitalStrategy capitalStrategy): Loan
+    +{static} createRevolver(double commitment, int riskRating, LocalDate expiry, double outstanding): Loan
+    +{static} createRevolver(double commitment, int riskRating, LocalDate expiry, CapitalStrategy capitalStrategy, double outstanding): Loan
+    +{static} createRevolvingCreditTermLoan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding): Loan
+    +{static} createRevolvingCreditTermLoan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy): Loan
+    -Loan(double commitment, int riskRating, LocalDate maturity, LocalDate expiry, double outstanding, CapitalStrategy capitalStrategy)
+}
+
+note as benefitsAndLiabilities
+<size:18>Benefits and Liabilities</size>
++ Communicates what kinds of instances are available better than constructors.
++ Bypasses constructor limitations, such as the inability to have two constructors with the same number and type of arguments.
++ Makes it easier to find unused creation code.
+
+– Makes creation nonstandard: some classes are instantiated using new, while others use Creation Methods.
+end note
+
+@enduml
